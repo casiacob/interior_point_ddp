@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d88684ef-9157-41a8-a0fc-59f42c62d7d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cartpole_mpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/cartpole_mpc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ipddp.py" beforeDir="false" afterPath="$PROJECT_DIR$/ipddp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pendulum_mpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pendulum_mpc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pendulum_runtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/pendulum_runtime.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +43,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.cartpole_mpc.executor": "Run",
+    "Python.cartpole_runtime.executor": "Run",
     "Python.pendulum_mpc.executor": "Run",
     "Python.pendulum_runtime.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -57,7 +62,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.pendulum_runtime">
+  <component name="RunManager" selected="Python.cartpole_runtime">
     <configuration name="cartpole_mpc" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="interior_point_ddp" />
       <option name="ENV_FILES" value="" />
@@ -73,6 +78,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cartpole_mpc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="cartpole_runtime" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="interior_point_ddp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cartpole_runtime.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -202,10 +230,12 @@
       <item itemvalue="Python.vehicle_to" />
       <item itemvalue="Python.vehicle_mpc" />
       <item itemvalue="Python.cartpole_mpc" />
+      <item itemvalue="Python.cartpole_runtime" />
       <item itemvalue="Python.pendulum_runtime" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cartpole_runtime" />
         <item itemvalue="Python.pendulum_runtime" />
       </list>
     </recent_temporary>
@@ -228,7 +258,7 @@
       <updated>1688455910408</updated>
       <workItem from="1688455912253" duration="1233000" />
       <workItem from="1740405730417" duration="293000" />
-      <workItem from="1740485297351" duration="1406000" />
+      <workItem from="1740485297351" duration="3019000" />
     </task>
     <servers />
   </component>
@@ -247,10 +277,12 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/interior_point_ddp$pendulum_runtime.coverage" NAME="pendulum_runtime Coverage Results" MODIFIED="1740486657488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/interior_point_ddp$vehicle_mpc.coverage" NAME="vehicle_mpc Coverage Results" MODIFIED="1688456970222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/interior_point_ddp$pendulum_to.coverage" NAME="pendulum_to Coverage Results" MODIFIED="1688456152670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/interior_point_ddp$cartpole_mpc.coverage" NAME="cartpole_mpc Coverage Results" MODIFIED="1688456641073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/interior_point_ddp$cartpole_mpc.coverage" NAME="cartpole_mpc Coverage Results" MODIFIED="1740492409414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/interior_point_ddp$pendulum_mpc.coverage" NAME="pendulum_mpc Coverage Results" MODIFIED="1740405980199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/interior_point_ddp$cartpole_runtime.coverage" NAME="cartpole_runtime Coverage Results" MODIFIED="1740492626383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/interior_point_ddp$vehicle_to.coverage" NAME="vehicle_to Coverage Results" MODIFIED="1688456859057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

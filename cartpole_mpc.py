@@ -2,7 +2,7 @@ import jax.numpy as jnp
 from utils import wrap_angle, discretize_dynamics
 import jax
 import matplotlib.pyplot as plt
-from jax.config import config
+from jax import config
 from ipddp import infeasible_ipddp
 
 # Enable 64 bit floating point precision

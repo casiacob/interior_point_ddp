@@ -217,7 +217,7 @@ def infeasible_ipddp(
             0,
         ),
     )
-    jax.debug.print("ipddp converged in {x}", x=iterations)
+    # jax.debug.print("ipddp converged in {x}", x=iterations)
     return (
         optimal_states,
         optimal_controls,

@@ -1,9 +1,9 @@
 import jax.numpy as jnp
-from utils import discretize_dynamics, wrap_angle
+from utils import euler, wrap_angle
 import jax
 from jax.config import config
-import matplotlib.pyplot as plt
 from ipddp import infeasible_ipddp
+import time
 
 # Enable 64 bit floating point precision
 config.update("jax_enable_x64", True)
@@ -58,44 +58,44 @@ def pendulum(state: jnp.ndarray, action: jnp.ndarray) -> jnp.ndarray:
     )
 
 
-simulation_step = 0.01
-downsampling = 1
-dynamics = discretize_dynamics(
-    ode=pendulum, simulation_step=simulation_step, downsampling=downsampling
-)
-
-
-def plot_traj(states, controls):
-    plt.plot(states[:, 0], label="angle")
-    plt.plot(states[:, 1], label="angular velocity")
-    plt.legend()
-    plt.show()
-    plt.plot(controls)
-    plt.show()
-
-
-horizon = 100
-mean = jnp.array([0.0])
-sigma = jnp.array([0.01])
-key = jax.random.PRNGKey(3)
-u = mean + sigma * jax.random.normal(key, shape=(horizon, 1))
-x0 = jnp.array([wrap_angle(0.01), -0.01])
+Ts = [0.05, 0.025, 0.0125, 0.01, 0.005, 0.0025, 0.00125, 0.001]
+N = [20, 40, 80, 100, 200, 400, 800, 1000]
+ipddp_means = []
 xd = jnp.array((jnp.pi, 0.0))
-z = 0.01 * jnp.ones((horizon, 2))
-s = 0.1 * jnp.ones((horizon, 2))
+
+for sampling_period, horizon in zip(Ts, N):
+    par_time_array = []
+    seq_time_array = []
+    downsampling = 1
+    dynamics = euler(pendulum, sampling_period)
+
+    x0 = jnp.array([wrap_angle(0.1), -0.1])
+    key = jax.random.PRNGKey(1)
+    u = 0.1 * jax.random.normal(key, shape=(horizon, 1))
+
+    z = 0.01 * jnp.ones((horizon, 2))
+    s = 0.1 * jnp.ones((horizon, 2))
 
 
-def mpc_body(carry, inp):
-    prev_state, prev_control = carry
-    jax.debug.print("initial state = {x}", x=prev_state)
-    states, control, _, _ = infeasible_ipddp(
-        prev_state, prev_control, xd, s, z, dynamics, constraints, transient_cost, final_cost
+    annon_ipddp = lambda state0, control, state_d, slack, lag: infeasible_ipddp(
+        state0, control, state_d, slack, lag, dynamics, constraints, transient_cost, final_cost
     )
-    next_state = dynamics(prev_state, control[0])
-    return (next_state, control), (next_state, control[0])
+
+    _jitted_ipddp = jax.jit(annon_ipddp)
+    _jitted_ipddp(x0, u, xd, s, z)
+
+    for i in range(10):
+        start = time.time()
+        states, control, _, _ = _jitted_ipddp(x0, u, xd, s, z)
+        jax.block_until_ready(control)
+        end = time.time()
+        ipddp_time = end - start
 
 
-_, mpc_out = jax.lax.scan(mpc_body, (x0, u), None, length=100)
-mpc_states, mpc_controls = mpc_out
-mpc_states = jnp.vstack((x0, mpc_states))
-plot_traj(mpc_states, mpc_controls)
+        par_time_array.append(ipddp_time)
+
+    ipddp_means.append(jnp.mean(jnp.array(par_time_array)))
+par_time_means_arr = jnp.array(ipddp_means)
+
+
+print(par_time_means_arr)

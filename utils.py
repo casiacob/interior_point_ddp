@@ -43,3 +43,11 @@ def discretize_dynamics(ode: Callable, simulation_step: float, downsampling: int
         )
 
     return dynamics
+
+
+
+
+def euler(ode: Callable, simulation_step: float) -> Callable:
+    def dynamics(state, control):
+        return state + simulation_step * ode(state, control)
+    return dynamics

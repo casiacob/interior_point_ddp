@@ -59,7 +59,7 @@ def infeasible_ipddp(
 
         # compute barrier problem cost at current values
         cost = barrier_total_cost(states, controls, goal_state, slacks, barrier_param)
-        jax.debug.print("Cost:            {x}", x=cost)
+        # jax.debug.print("Cost:            {x}", x=cost)
 
         # run backward pass
         (
@@ -105,7 +105,7 @@ def infeasible_ipddp(
         new_cost = barrier_total_cost(
             new_states, new_controls, goal_state, new_slacks, barrier_param
         )
-        jax.debug.print("New Cost:        {x}", x=new_cost)
+        # jax.debug.print("New Cost:        {x}", x=new_cost)
 
         # compute gain ratio: actual reduction/predicted reduction
         val_change = cost - new_cost
@@ -145,14 +145,14 @@ def infeasible_ipddp(
             barrier_param,
         )
         loop_counter += 1
-        jax.debug.print("Feasible bwd     {x}", x=feasible_bp)
-        jax.debug.print("Feasible fwd     {x}", x=feasible_fp)
-        jax.debug.print("slacks > 0       {x}", x=jnp.all(slacks > 0))
-        jax.debug.print("duals > 0        {x}", x=jnp.all(duals > 0))
-        jax.debug.print("bp:              {x}", x=barrier_param)
-        jax.debug.print("opt err:         {x}", x=opt_err_bp)
-        jax.debug.print("reg param:       {x}", x=reg_param)
-        jax.debug.print("------------------------")
+        # jax.debug.print("Feasible bwd     {x}", x=feasible_bp)
+        # jax.debug.print("Feasible fwd     {x}", x=feasible_fp)
+        # jax.debug.print("slacks > 0       {x}", x=jnp.all(slacks > 0))
+        # jax.debug.print("duals > 0        {x}", x=jnp.all(duals > 0))
+        # jax.debug.print("bp:              {x}", x=barrier_param)
+        # jax.debug.print("opt err:         {x}", x=opt_err_bp)
+        # jax.debug.print("reg param:       {x}", x=reg_param)
+        # jax.debug.print("------------------------")
         return (
             states,
             controls,
